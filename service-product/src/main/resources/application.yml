@@ -1,8 +1,32 @@
 server:
   port: 9001
 spring:
+  profiles:
+    active: dev
   application:
     name: product-service
   cloud:
     nacos:
       server-addr: 127.0.0.1:8848
+      config:
+#        import-check:
+#          enabled: false #关闭启动时导入检查
+        namespace: ${spring.profiles.active:dev}
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+    import:
+      - nacos:common.yml?group=common
+      - nacos:db-dev.yml?group=product
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+    import:
+      - nacos:common.yml?group=common
+      - nacos:db-prod.yml?group=product

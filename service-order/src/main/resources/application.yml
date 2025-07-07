@@ -6,3 +6,7 @@ spring:
   cloud:
     nacos:
       server-addr: 127.0.0.1:8848
+      config:
+        # 由于统一导入了配置中心依赖 而本服务暂不需要导入配置 需关闭启动时导入检查
+        import-check:
+          enabled: false
