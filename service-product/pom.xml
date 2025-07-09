@@ -18,7 +18,7 @@
     </properties>
 
     <dependencies>
-        <!-- 微服务公共maven坐标 常见有 注册中心 配置中心 openfeign loadbalancer seata-->
+        <!-- 微服务公共maven坐标 nacos服务治理(注册中心、配置中心)、分布式事务seata、服务保护sentinel(熔断限流)、rpc框架openfeign(负载均衡loadbalancer) -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
@@ -26,6 +26,10 @@
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>

@@ -10,3 +10,32 @@ spring:
         # 由于统一导入了配置中心依赖 而本服务暂不需要导入配置 需关闭启动时导入检查
         import-check:
           enabled: false
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8858
+      eager: true # 启动时加载所有规则 而非懒加载第一次请求时才加载
+    openfeign:
+      client:
+        config:
+          # 所有feign client默认配置
+          default:
+            logger-level: FULL # 打印所有请求和响应
+            connectTimeout: 2000
+            read-timeout: 4000
+            # 添加请求拦截器 如果拦截器以及注入ioc容器并继承feign包的拦截器 则不需要添加
+#            request-interceptors:
+#              - com.byquan2004.order.interceptor.XTokenInterceptor
+          # 指定FeignClient的连接配置 使用serviceId 或者 contextId
+          product-service:
+            connectTimeout: 5000
+            readTimeout: 5000
+            retryer: feign.Retryer.Default # 默认重试策略
+logging:
+  level:
+    # feign client所在包配置为 debug 并配合配置文件就可以看到请求信息
+    com.byquan2004.order.client: debug
+
+# 为feign功能开启sentinel的服务保护功能 从而触发兜底回调
+feign:
+  sentinel:
+    enabled: true

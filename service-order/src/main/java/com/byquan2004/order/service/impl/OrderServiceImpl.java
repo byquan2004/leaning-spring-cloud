@@ -11,8 +11,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
-
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -25,8 +23,8 @@ public class OrderServiceImpl implements IOrderService {
     @Override
     public Order createOrder(Long userId, Long productId) {
         //++========测试========
-        Map<String, Object> res = openApiClient.getVideo(1, 20);
-        log.info("首次获取的结果》〉》：{}", res);
+//        Map<String, Object> res = openApiClient.getVideo(1, 20);
+//        log.info("首次获取的结果》〉》：{}", res);
 //        try {
 //            Map<String, Object> map = objectMapper.readValue(res, Map.class);
 //            log.info("解析后的结果》〉》：{}", map);

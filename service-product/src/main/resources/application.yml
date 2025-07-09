@@ -12,6 +12,10 @@ spring:
 #        import-check:
 #          enabled: false #关闭启动时导入检查
         namespace: ${spring.profiles.active:dev}
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8858
+      eager: true # 启动时加载所有规则 而非懒加载第一次请求时才加载
 
 ---
 spring:

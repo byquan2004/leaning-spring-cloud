@@ -17,6 +17,7 @@
         <module>service-product</module>
         <module>service-order</module>
         <module>common-model</module>
+        <module>gateway</module>
     </modules>
     <packaging>pom</packaging>
 
