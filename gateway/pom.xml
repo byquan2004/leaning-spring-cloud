@@ -28,6 +28,10 @@
 <!--            <artifactId>netty-resolver-dns-native-macos</artifactId>-->
 <!--            <version>4.1.119.Final</version> &lt;!&ndash; 请根据你的项目选择合适的版本 &ndash;&gt;-->
 <!--        </dependency>-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.cloud</groupId>

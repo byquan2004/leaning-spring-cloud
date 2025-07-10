@@ -5,8 +5,40 @@ spring:
         - id: product-service
           uri: lb://product-service
           predicates:
-            - Path=/product/**
+            - Path=/api/product/**
+          order: 1
+#          metadata:
+#            my-key: my-value
+          filters:
+            # 配置重写路径 如 前半部分舍弃
+            - RewritePath=/api/?(?<segment>.*), /$\{segment}
         - id: order-service
           uri: lb://order-service
           predicates:
-            - Path=/order/**
+            - name: Path
+              args:
+                pattern: /order/**
+          order: 0
+          filters:
+            - MyCustom=woshia,woshib,woshic
+        - id: test-id
+          uri: https://baidu.com
+          predicates: # 如果多个断言 必须同时满足才能放行 如 http://localhost:8080/s?wd=spring%20cloud&jyq=qyj
+            # 配置 Path路径 断言
+            - name: Path
+              args:
+                pattern: /s
+            # 配置 Query查询参数 断言
+            - name: Query
+              args:
+                param: wd
+                regexp: spring cloud
+            # 配置 自定义 断言 严格遵循后缀 XxxRoutePredicateFactory
+            - Vip=jyq,qyj
+#            - name: Vip
+#              args:
+#                myKey: jyq
+#                myValue: qyj
+          order: 2
+      default-filters:
+        - AddRequestHeader=xxx-token,asdasdas123
